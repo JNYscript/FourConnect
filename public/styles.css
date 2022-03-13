@@ -1,0 +1,137 @@
+body {
+    background-color: #EEF2F7;
+}
+
+#canvas {
+    outline: 3px solid #000;
+    cursor: pointer;
+    align-self: center;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12)
+}
+
+h1 {
+    font-size: 70px;
+    color: #37A647;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+
+#b1 {
+    /* Green */
+    background-color: #5fc402;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.gameState {
+    margin-top: 15px;
+    width: 500px;
+    height: 50px;
+}
+
+.layout {
+    width: 1366px;
+    height: 768px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 15% auto 30%;
+    gap: 8px;
+    grid-auto-flow: column dense;
+}
+
+.grow1 {
+    flex-grow: 1;
+}
+
+.loader {
+    margin: 0 0 2em;
+    height: 100px;
+    width: 20%;
+    text-align: center;
+    padding: 1em;
+    margin: 0 auto 1em;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+/*
+    Set the color of the icon
+  */
+
+svg path,
+svg rect {
+    fill: #FF6700;
+}
+
+.layout2 {
+    margin-top: 50px;
+    width: 100%;
+    display: grid;
+    grid: "gamestate gamestate_symbol" 1fr / 70% 30%;
+    gap: 8px;
+}
+
+.gamestate {
+    grid-area: gamestate;
+}
+
+.gamestate_symbol {
+    grid-area: gamestate_symbol;
+}
+
+.gamestate_text {
+    line-height: 80px;
+    height: 80px;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(255, 196, 0);
+    /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+#waiting {
+    display: none;
+    line-height: 80px;
+    color: #FF6700;
+}
+
+#waiting_symbol {
+    display: none;
+}
+
+#y_turn {
+    color: #5fc402;
+    display: none;
+}
+
+#o_turn {
+    color: #000000;
+    display: none;
+}
+
+#disconnected {
+    color: #000000;
+    display: none;
+}
+
+#win {
+    color: #4bcc00;
+    display: none;
+}
+
+#defeat {
+    color: #ff0000;
+    display: none;
+}
+
+#draw {
+    color: #fffb00;
+    display: none;
+}

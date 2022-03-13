@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Connect Four</title>
+    <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script defer src="http://localhost:3000/script.js"></script>
+    <link rel="icon" href="http://localhost:3000/favicon-32x32.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://localhost:3000/styles.css" type="text/css">
+</head>
+
+<body>
+
+<section class="layout">
+    <div></div>
+    <div>
+
+    </div>
+    <div>
+        <h1>Connect Four</h1>
+    </div>
+    <div>
+        <canvas id="canvas" width="700" height="600"></canvas>
+    </div>
+    <div></div>
+    <div>
+
+        <button id="b1" onclick="start()">Start</button>
+        <div>
+            <section class="layout2">
+                <div class="gamestate">
+
+                    <div id="waiting" class="gamestate_text">waiting for opponent</div>
+                    <div id="y_turn" class="gamestate_text">your turn</div>
+                    <div id="o_turn" class="gamestate_text">opponent turn</div>
+                    <div id="disconnected" class="gamestate_text">opponent disconnected</div>
+                    <div id="win" class="gamestate_text">WIN</div>
+                    <div id="defeat" class="gamestate_text">DEFFEAT</div>
+                    <div id="draw" class="gamestate_text">DRAW</div>
+
+                </div>
+                <div class="gamestate_symbol" , id="waiting_symbol">
+
+                    <div class="loader loader--style3" title="2">
+                        <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                             width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"
+                             xml:space="preserve">
+                            <path fill="#000"
+                                  d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                                <animateTransform attributeType="xml"
+                                                  attributeName="transform"
+                                                  type="rotate"
+                                                  from="0 25 25"
+                                                  to="360 25 25"
+                                                  dur="0.6s"
+                                                  repeatCount="indefinite"/>
+                            </path>
+                    </svg>
+                    </div>
+                </div>
+
+
+        </div>
+</section>
+
+
+</div>
+
+
+</div>
+</section>
+
+
+</body>
+
+</html>
