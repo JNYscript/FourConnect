@@ -85,9 +85,4 @@ app.get('/test', (req, res) => {
 
 })
 
-const port = process.env.port || 3000;
-app.listen(port, () =>{
-
-    console.log(port)
-
-})
+server.listen(process.env.PORT ||3000)

@@ -21,7 +21,7 @@ function start() {
 
     var div = document.getElementById('b1')
     div.style.display = 'none'
-    socket = io('http://85.214.81.125:80')
+    socket = io()
 
 
     socket.on("connect", () => {
