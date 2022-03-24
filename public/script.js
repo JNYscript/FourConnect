@@ -1,3 +1,4 @@
+//define variables
 var gameId = -1
 var socket = null
 var canMove = false
@@ -7,6 +8,7 @@ var yTurn = document.getElementById('y_turn')
 var oTurn = document.getElementById('o_turn')
 
 
+//handles game start
 function start() {
     game = new Spiel(ctx)
     game.initDraw()
@@ -24,15 +26,14 @@ function start() {
     socket = io()
 
 
+    //socket connection established
     socket.on("connect", () => {
-
-
 
     })
 
 
 
-
+    //sends start request to server
     socket.on("gameStart", (id, move) => {
 
 
@@ -66,6 +67,8 @@ function start() {
 
     })
 
+
+    //sends turn to server
     socket.on("turn", state => {
 
 
@@ -88,6 +91,8 @@ function start() {
         }
     })
 
+
+    //handles game ending requests
     socket.on("gameEnd", result => {
 
         yTurn.style.display = "none"
@@ -112,6 +117,8 @@ function start() {
 
     })
 
+
+    //handles close requests
     socket.on("close", () => {
 
         document.getElementById('disconnected').style.display = "block"
@@ -124,14 +131,14 @@ function start() {
 }
 
 
-
+//init canvas for board representation
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 ctx.shadowColor = 'rgba(204, 204, 204, 0.5)';
 
 
-
+//class for single pieces
 class Steine {
 
     constructor(x, y, canvas) {
@@ -146,6 +153,7 @@ class Steine {
 
     }
 
+    //draws rectangle around the circle
     drawRect(color) {
         this.canvas.fillStyle = color
         this.canvas.fillRect(this.x, this.y, this.size, this.size)
@@ -154,6 +162,8 @@ class Steine {
 
     }
 
+
+    //draws the circle
     drawCircle() {
 
         this.canvas.beginPath()
@@ -181,6 +191,7 @@ class Steine {
 
 }
 
+//this class handles visual game representation
 class Spiel {
 
     constructor(canvas) {
@@ -205,6 +216,8 @@ class Spiel {
 
     }
 
+
+    //draws the board
     initDraw() {
 
         this.arr.forEach(row => {
@@ -220,6 +233,8 @@ class Spiel {
 
     }
 
+
+    //for highlighting the hovered column
     hightlight(column) {
 
 
@@ -234,6 +249,8 @@ class Spiel {
 
     }
 
+
+    //updates the board visually to the current state
     update(move) {
 
         this.arr[move[1]][move[0]].state = move[2]
@@ -248,10 +265,12 @@ class Spiel {
 
 
 
-
+//init game object
 var game = new Spiel(ctx)
 
 game.initDraw()
+
+//handles mouse movement over board
 canvas.onmousemove = function(e) {
 
     // important: correct mouse position:
@@ -268,12 +287,15 @@ canvas.onmousemove = function(e) {
 
     game.hightlight(pos)
 }
+
+
 canvas.onmouseout = function(e) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     game.initDraw()
 
 }
 
+//handles mouse click on board
 canvas.onclick = function(e) {
 
 
@@ -298,6 +320,7 @@ canvas.onclick = function(e) {
     game.initDraw()
 }
 
+//function to get correct mouse position
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
     return {

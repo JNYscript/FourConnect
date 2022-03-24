@@ -1,6 +1,10 @@
+
 const res = require("express/lib/response")
 
+//class handles game logic
 class Game {
+
+
 
     constructor(id, socketID, io) {
 
@@ -17,6 +21,7 @@ class Game {
 
     }
 
+    //if second player joins
     secondPlayer(id) {
 
         this.p2 = id
@@ -29,6 +34,7 @@ class Game {
 
     }
 
+    //handles player turn
     turn(playerID, column) {
 
         if (!((playerID == this.p1 && this.currentPlayer == 1) || (playerID == this.p2 && this.currentPlayer == -1))) {
@@ -53,6 +59,8 @@ class Game {
 
     }
 
+
+    //handles player disconnecting
     disconnect(id) {
 
         if (id == this.p1) {
@@ -66,9 +74,10 @@ class Game {
     }
 
 
+    //check if game is over
     checkgamestate(move) {
 
-        //check if draw
+
         var x = move[0]
         var y = move[1]
 
@@ -80,6 +89,7 @@ class Game {
 
         })
 
+        //check if draw
         if (count === 42) {
 
             this.io.to(this.p1).emit("gameEnd", 3)
@@ -112,12 +122,8 @@ class Game {
         //  grid[][] is the 6X7 matrix
         //  result is the column number where the last coin was placed
         //  rowNum is the row number where the last coin was placed
-        // quelle: https://stackoverflow.com/questions/15457796/four-in-a-row-logic/15457826#15457826
+        // inspired by: https://stackoverflow.com/questions/15457796/four-in-a-row-logic/15457826#15457826
 
-        // 1 horizontal
-        // 2 vertical
-        // 3 diagonal links oben
-        // 4 diagonal links unten
 
         var grid = this.state
 
@@ -174,4 +180,6 @@ class Game {
 
 }
 
+
+//export class
 module.exports.Game = Game
