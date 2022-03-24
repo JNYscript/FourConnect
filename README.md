@@ -1,4 +1,4 @@
-# Gewinnt/Connect Four
+# 4-Gewinnt/Connect Four
 ### Grundprinzip:
 -	Senkrechtes Spielbrett
 -	Spielbrett aus sieben Spalten und sechs Reihen
