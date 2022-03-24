@@ -3,15 +3,21 @@ var gameId = -1
 var socket = null
 var canMove = false
 var yourColor = "black"
-var oponentColor = "red"
+var opponentColor = "red"
 var yTurn = document.getElementById('y_turn')
 var oTurn = document.getElementById('o_turn')
+var name = "default"
+var opponentName = "opponent"
 
 
 //handles game start
 function start() {
     game = new Spiel(ctx)
     game.initDraw()
+    let n = document.getElementById("i1").value
+    if(n!=""){
+        name = n
+    }
 
     document.getElementById('waiting').style.display = "block"
     document.getElementById('waiting_symbol').style.display = "block"
@@ -20,41 +26,54 @@ function start() {
     document.getElementById('win').style.display = "none"
     document.getElementById('defeat').style.display = "none"
     document.getElementById('draw').style.display = "none"
+    document.getElementById('i1').style.display = "none"
 
     var div = document.getElementById('b1')
     div.style.display = 'none'
     socket = io()
 
 
-    //socket connection established
-    socket.on("connect", () => {
+
+
+    socket.on("oName",oName =>{
+
+        opponentName = oName
+
+        document.getElementById("vsy").innerHTML = name
+        document.getElementById("vso").innerHTML = opponentName
+
 
     })
 
-
-
-    //sends start request to server
+    //handles game start
     socket.on("gameStart", (id, move) => {
+
 
 
         document.getElementById('waiting').style.display = "none"
         document.getElementById('waiting_symbol').style.display = "none"
 
 
+
         canMove = move
 
         gameId = id
 
+        socket.emit("name",gameId,socket.id,name)
+
+
         if (!canMove) {
             yourColor = "#F29F05"
-            oponentColor = "#37A647"
+            opponentColor = "#37A647"
         } else {
             yourColor = "#37A647"
-            oponentColor = "#F29F05"
+            opponentColor = "#F29F05"
         }
 
         yTurn.style.color = yourColor
-        oTurn.style.color = oponentColor
+        oTurn.style.color = opponentColor
+        document.getElementById('vsy').style.color = yourColor
+        document.getElementById("vso").style.color = opponentColor
 
         if (canMove) {
             yTurn.style.display = "block"
@@ -64,6 +83,7 @@ function start() {
             oTurn.style.display = "block"
         }
 
+        document.getElementById('vs').style.display = "inline-block"
 
     })
 
@@ -95,10 +115,13 @@ function start() {
     //handles game ending requests
     socket.on("gameEnd", result => {
 
+
+        document.getElementById('vs').style.display = "none"
         yTurn.style.display = "none"
         oTurn.style.display = "none"
         canMove = false
-        div.style.display = "block"
+        div.style.display = "inline-block"
+        document.getElementById('i1').style.display = "inline-block"
 
         if (result == 1) {
             document.getElementById('win').style.display = "block"
@@ -121,11 +144,16 @@ function start() {
     //handles close requests
     socket.on("close", () => {
 
+        document.getElementById('draw').style.display = "none"
+        document.getElementById('defeat').style.display = "none"
+        document.getElementById('win').style.display = "none"
         document.getElementById('disconnected').style.display = "block"
         yTurn.style.display = "none"
         oTurn.style.display = "none"
         canMove = false
-        div.style.display = "block"
+        div.style.display = "inline-block"
+        document.getElementById('i1').style.display = "inline-block"
+        document.getElementById('vs').style.display = "none"
 
     })
 }

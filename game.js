@@ -6,11 +6,13 @@ class Game {
 
 
 
-    constructor(id, socketID, io) {
+    constructor(id, socketID, io,name) {
 
         this.id = id
         this.p1 = socketID
         this.p2 = null
+        this.p1Name = null
+        this.p2Name = null
         this.waiting = true
         this.counter = [0, 0, 0, 0, 0, 0, 0]
         this.io = io
@@ -31,6 +33,24 @@ class Game {
         this.io.to(this.p1).emit("gameStart", this.id, false)
         this.io.to(this.p2).emit("gameStart", this.id, true)
 
+        this.io.to(this.p2).emit("gameStart", this.id, true)
+
+
+
+    }
+
+    setNames(id,name){
+
+        if (id == this.p1) {
+            this.p1Name = name
+            this.io.to(this.p2).emit("oName", this.p1Name)
+
+
+        } else {
+            this.p2Name = name
+            this.io.to(this.p1).emit("oName", this.p2Name)
+
+        }
 
     }
 
