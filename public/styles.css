@@ -28,6 +28,76 @@ h1 {
     font-size: 16px;
 }
 
+
+#vs{
+
+    display: none;
+
+
+    color: rgb(0, 0, 0);
+
+
+
+}
+
+
+#vsy{
+    display: inline-block;
+    line-height: 80px;
+    height: 80px;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(255, 196, 0);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+
+
+}
+
+#vsm{
+    display: inline-block;
+    line-height: 80px;
+    height: 80px;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+#vso{
+    display: inline-block;
+    line-height: 80px;
+    height: 80px;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(255, 0, 0);
+    /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+
+}
+
+
+
+#i1{
+
+
+    border: none;
+
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 5px;
+
+}
+
 .gameState {
     margin-top: 15px;
     width: 500px;

@@ -18,7 +18,7 @@ var games = []
 var id = 1
 
 //handles socket requests
-io.on('connection', socket => {
+io.on('connection', (socket, name) => {
 
     let newGame = true
     let g = null
@@ -42,6 +42,19 @@ io.on('connection', socket => {
     } else {
         if (g != null) g.secondPlayer(socket.id)
     }
+
+    socket.on("name", (gId, pId, name) => {
+        for (let obj of games) {
+
+            if (obj.id == gId) {
+                obj.setNames(pId, name)
+
+                break
+            }
+        }
+
+
+    })
 
     //handles socket disconnects
     socket.on("disconnect", (reason) => {
@@ -87,7 +100,5 @@ app.get('/', (req, res) => {
 })
 
 
-
-
 //listen on port 3000 or preferred port of the deployment
-server.listen(process.env.PORT ||3000)
+server.listen(process.env.PORT || 3000)
