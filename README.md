@@ -1,5 +1,5 @@
 # Gewinnt/Connect Four
-###Grundprinzip:
+### Grundprinzip:
 -	Senkrechtes Spielbrett
 -	Spielbrett aus sieben Spalten und sechs Reihen
 -	Spieler lassen abwechselnd Steine fallen
@@ -8,7 +8,7 @@
 Verbindung mit node.js
 -	Anwendung wird im Browser ausgeführt
 
-###How to run:
+### How to run:
 
 - node.js installieren
 - run command: "npm install"
